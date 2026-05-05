@@ -1,0 +1,173 @@
+﻿@{
+Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Festival Waste</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Segoe UI;
+            overflow-x: hidden;
+        }
+
+        /* ⭐ NAVBAR */
+        .topbar {
+            background: white;
+            padding: 15px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .menu a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+            .menu a:hover {
+                color: #198754;
+            }
+
+        /* ⭐ BANNER */
+        .banner {
+            height: 260px;
+            background: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url('https://images.unsplash.com/photo-1605600659873-d808a13e4f3d');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding-left: 80px;
+            color: white;
+        }
+
+        /* ⭐ INFO CARDS */
+        .info-section {
+            padding: 50px 80px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            flex: 1;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+            .info-card.active {
+                background: #f59e0b;
+                color: white;
+            }
+
+        /* ⭐ CONTACT MAIN */
+        .contact-main {
+            display: flex;
+            padding: 60px 80px;
+        }
+
+            .contact-main img {
+                width: 45%;
+                object-fit: cover;
+            }
+
+        .form-box {
+            background: #f4f4f4;
+            padding: 40px;
+            width: 55%;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        /* ⭐ FOOTER */
+        .footer {
+            background: #0b2e21;
+            color: white;
+            padding: 60px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- ⭐ NAVBAR -->
+    
+
+    <!-- ⭐ BANNER -->
+    <div class="banner">
+        <div>
+            <h1 class="fw-bold">Contact Festival Waste Tracker</h1>
+            <p>Reach out for waste reporting queries or municipal support.</p>
+        </div>
+    </div>
+
+
+
+    <!-- ⭐ INFO CARDS -->
+    <div class="info-section">
+
+        <div class="info-card">
+            📍<h5 class="mt-2">Office Location</h5>
+            <p>Badlapur, Maharashtra</p>
+        </div>
+
+        <div class="info-card active">
+            📞<h5 class="mt-2">Give Us A Call</h5>
+            <p>+91 7820851018</p>
+        </div>
+
+        <div class="info-card">
+            ✉<h5 class="mt-2">Send A Message</h5>
+            <p>festivalwaste@gmail.com</p>
+        </div>
+
+    </div>
+
+
+
+    <!-- ⭐ CONTACT MAIN -->
+    <div class="contact-main">
+
+        <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433" />
+
+        <div class="form-box">
+
+            <h4 class="mb-3">Send Message</h4>
+
+            <input class="form-control" placeholder="Name" />
+            <input class="form-control" placeholder="Email" />
+            <input class="form-control" placeholder="Phone Number" />
+            <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+
+            <button class="btn btn-warning w-100 mt-2">SEND</button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ⭐ FOOTER -->
+    
+
+
+</body>
+</html>

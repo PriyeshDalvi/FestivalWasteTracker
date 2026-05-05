@@ -1,0 +1,164 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Dashboard";
+    
+    var user = Context.Session.GetString("User");
+    var role = Context.Session.GetString("Role");
+}
+   
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        @(role == "admin" ? "Admin Dashboard Overview" : "My Waste Dashboard")
+    </h2>
+
+    @if (role == "admin")
+    {
+        <form method="get" class="mb-4">
+
+            <label class="fw-bold">Select Festival</label>
+
+            <select name="festival"
+                    class="form-select w-25"
+                    onchange="this.form.submit()">
+
+                <option>All Festivals</option>
+
+                @foreach (var f in ViewBag.Festivals)
+                {
+                    <option value="@f"
+                            selected="@(ViewBag.SelectedFestival == f)">
+                        @f
+                    </option>
+                }
+
+            </select>
+
+        </form>
+    }
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h6>Total Waste Records</h6>
+                    <h2>@ViewBag.TotalWasteRecords</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h6>Pending Reports</h6>
+                    <h2>@ViewBag.PendingWaste</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h6>Resolved Reports</h6>
+                    <h2>@ViewBag.ResolvedWaste</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h6>Total Waste (kg)</h6>
+                    <h2>@ViewBag.TotalWasteKg</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+            <h5>Waste Type Distribution</h5>
+
+            <div style="width:350px;height:350px">
+                <canvas id="chart"></canvas>
+            </div>
+
+        </div>
+
+        @if (role == "admin")
+        {
+            <div class="col-md-6">
+
+                <h5>Recent Waste Reports</h5>
+
+                <table class="table table-bordered mt-3">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Festival</th>
+                            <th>Type</th>
+                            <th>Kg</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (ViewBag.RecentReports.Count > 0)
+                        {
+                            foreach (var item in ViewBag.RecentReports)
+                            {
+                                <tr>
+                                    <td>@item.EventName</td>
+                                    <td>@item.WasteType</td>
+                                    <td>@item.QuantityKg</td>
+                                    <td>
+                                        <span class="badge bg-success">
+                                            @item.Status
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    No Records Found
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+<script>
+    new Chart(document.getElementById('chart'), {
+        type:'pie',
+        data:{
+            labels:['Plastic','Organic','Paper'],
+            datasets:[{
+                data:[
+                    @ViewBag.PlasticWaste,
+                    @ViewBag.OrganicWaste,
+                    @ViewBag.PaperWaste
+                ],
+                backgroundColor:['green','orange','blue']
+            }]
+        }
+    });
+</script>

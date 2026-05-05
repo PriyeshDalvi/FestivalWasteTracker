@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_LayoutPublic.cshtml";
+}
+
+<style>
+
+    .hero-section {
+        height: 100vh;
+        background: url('/images/bins.jpg') center center / cover no-repeat;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,120,70,0.55); /* GREEN GLASS EFFECT */
+    }
+
+    .hero-card {
+        position: relative;
+        background: rgba(255,255,255,0.18);
+        backdrop-filter: blur(15px);
+        padding: 50px;
+        border-radius: 20px;
+        text-align: center;
+        color: white;
+        max-width: 600px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .section {
+        padding: 80px 0;
+    }
+
+</style>
+
+<div class="hero-section">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-card">
+        <h1 class="fw-bold mb-3">Festival Waste Tracker</h1>
+
+        <p>
+            Monitor and manage waste generated during festivals using a smart digital platform.
+            Promoting cleaner celebrations and sustainable communities.
+        </p>
+
+        <a href="/Account/Login" class="btn btn-success px-4 mt-3">Get Started</a>
+    </div>
+
+</div>
+
+
+<div class="container section">
+
+    <h2 class="text-center mb-5">Our Services</h2>
+
+    <div class="row">
+
+        <div class="col-md-4 text-center">
+            <img src="/images/service1.jpg" class="img-fluid rounded mb-3" style="height:220px;width:100%;object-fit:cover;">
+            <h5>Waste Reporting</h5>
+            <p>Citizens can easily report waste generated during festivals.</p>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <img src="/images/service2.jpg" class="img-fluid rounded mb-3" style="height:220px;width:100%;object-fit:cover;">
+            <h5>Live Tracking</h5>
+            <p>Authorities can monitor waste collection locations on map.</p>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <img src="/images/service3.jpg" class="img-fluid rounded mb-3" style="height:220px;width:100%;object-fit:cover;">
+            <h5>Analytics Dashboard</h5>
+            <p>Admin can view festival-wise waste analytics and reports.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="container section">
+
+    <h2 class="text-center mb-5">Latest Blog & Articles</h2>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <img src="/images/blog.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5>How Communities Can Achieve Zero Waste</h5>
+                    <p>Learn practical steps to reduce festival waste effectively.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

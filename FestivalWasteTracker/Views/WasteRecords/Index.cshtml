@@ -1,0 +1,132 @@
+﻿@model List<FestivalWasteTracker.Models.WasteRecord>
+
+@{
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+    ViewData["Title"] = "Waste Records";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Waste Records</h2>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+            <tr>
+                
+                <th>Date</th>
+                <th>Festival</th>
+                <th>Waste Type</th>
+                <th>Quantity</th>
+                <th>Reported By</th>
+                <th>Location</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+
+                    <td>
+                        @(item.CollectedDate.HasValue
+                                            ? item.CollectedDate.Value.ToString("dd-MM-yyyy")
+                                            : "-")
+                </td>
+
+                    <td>@item.EventName</td>
+
+                    <td>@item.WasteType</td>
+
+                    <td>@item.QuantityKg kg</td>
+
+                    <td>@item.ReportedBy</td>
+
+                    <td>
+                        @if (item.Latitude != null && item.Longitude != null)
+                        {
+                            <a target="_blank"
+                               href="https://www.google.com/maps?q=@item.Latitude,@item.Longitude">
+                                📍 View Location
+                            </a>
+
+                            <div style="font-size:12px;color:gray;">
+                                @item.LocationName
+                            </div>
+                        }
+                        else
+                        {
+                            <span>No Location</span>
+                        }
+                    </td>
+
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImagePath))
+                        {
+                            <img src="@item.ImagePath"
+                                 style="width:70px;height:70px;border-radius:8px;cursor:pointer"
+                                 onclick="showImage('@item.ImagePath')" />
+                        }
+                        else
+                        {
+                            <span>No Image</span>
+                        }
+                    </td>
+
+                    <td>
+                        @if (item.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Resolved</span>
+                        }
+                    </td>
+
+                    <td>
+                        @if (item.Status == "Pending")
+                        {
+                            <a class="btn btn-success btn-sm"
+                               href="/WasteRecords/UpdateStatus/@item.RecordId">
+                                Mark Resolved
+                            </a>
+                        }
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- IMAGE MODAL -->
+<div id="imgModal"
+     style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+     background:rgba(0,0,0,0.8);justify-content:center;align-items:center;z-index:9999;">
+
+    <img id="modalImg"
+         style="max-width:80%;max-height:80%;border-radius:10px;" />
+
+</div>
+
+<script>
+
+    function showImage(src){
+        document.getElementById("imgModal").style.display="flex";
+        document.getElementById("modalImg").src = src;
+    }
+
+    document.getElementById("imgModal").onclick=function(){
+        this.style.display="none";
+    }
+
+</script>
